@@ -16,41 +16,51 @@ Boilerplate for distributed systems using FastAPI, Celery, and SQLAlchemy.
 ## Architecture
 
 ### Structure
+
 Monorepo sharing core logic (models, database sessions, configurations) between API and Worker services.
 
 ### Data Access
+
 Generic repository pattern to decouple business logic from the ORM.
 
 ### Configuration
+
 Type-safe environment management using pydantic-settings.
 
 ### Containerization
+
 Multi-stage Docker builds orchestrated via Docker Compose.
 
 ## Usage
 
 ### Setup
-\`\`\`bash
+
+```bash
 uv sync
-\`\`\`
+```
 
 ### Infrastructure
-\`\`\`bash
+
+```bash
 docker compose up -d
-\`\`\`
+```
 
 ### Local Services
+
 API:
-\`\`\`bash
+
+```bash
 uv run uvicorn backend.app.main:app --reload
-\`\`\`
+```
 
 Worker:
-\`\`\`bash
+
+```bash
 uv run celery -A worker.app.main:celery_app worker --loglevel=info
-\`\`\`
+```
 
 ### Quality Control
-- **Linting:** \`uv run ruff check\`
-- **Typing:** \`uv run pyright\`
-- **Tests:** \`uv run pytest\`
+
+- **Linting:** `uv run ruff check`
+- **Typing:** `uv run pyright`
+- **Tests:** `uv run pytest`
