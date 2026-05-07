@@ -1,0 +1,43 @@
+[project]
+name = "python-distributed-template"
+version = "0.1.0"
+description = "Distributed system boilerplate with FastAPI, Celery, and SQLAlchemy."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.18.4",
+    "asyncpg>=0.31.0",
+    "celery>=5.6.3",
+    "fastapi>=0.136.1",
+    "httpx>=0.28.1",
+    "pydantic-settings>=2.14.0",
+    "redis>=7.4.0",
+    "sqlalchemy>=2.0.49",
+    "uvicorn>=0.46.0",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.6.0",
+    "pyright>=1.1.409",
+    "pytest>=9.0.3",
+    "pytest-asyncio>=1.3.0",
+    "ruff>=0.15.12",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "A", "C4", "T20", "RET", "SIM", "ARG", "PTH", "ERA", "PL"]
+ignore = []
+
+[tool.pyright]
+include = ["backend", "worker", "shared", "tests"]
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
